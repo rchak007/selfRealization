@@ -1,0 +1,21 @@
+{
+  "name": "py",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "openai": "^4.94.0",
+    "pg": "^8.14.1"
+  },
+  "devDependencies": {
+    "@types/pg": "^8.11.13",
+    "prisma": "^6.6.0"
+  }
+}

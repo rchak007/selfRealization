@@ -1,0 +1,38 @@
+node_modules
+# Keep environment variables out of version control
+.env
+prvReadMe.md
+
+
+# Dependencies
+node_modules/
+
+# Environment / Secrets
+.env
+.env.*
+
+# Build output
+dist/
+build/
+
+# Prisma
+prisma/*.db
+prisma/*.db-journal
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor settings
+.vscode/
+.idea/
+
+# Logs
+*.log
+npm-debug.log*
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Text source files (large, not needed in repo)
+# text_parts/
