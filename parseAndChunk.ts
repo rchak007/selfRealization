@@ -32,7 +32,7 @@ async function main() {
 //   let sequence = 1;?
   const { rows } = await db.query(`SELECT MAX(sequence) AS max FROM eternal_quest_chunks`);
   let sequence = (rows[0].max || 0) + 1;
-  console.log(`⏩ Resuming from sequence #${sequence}`);
+  console.log(`Resuming from sequence #${sequence}`);
 
 
   for (const file of files) {
@@ -64,7 +64,7 @@ async function main() {
         const raw = response.choices[0].message.content || "";
         chunks = JSON.parse(raw);
       } catch (err) {
-        console.error("❌ Error parsing OpenAI response:", err);
+        console.error("Error parsing OpenAI response:", err);
         continue;
       }
 
@@ -74,17 +74,17 @@ async function main() {
            VALUES ($1, $2, $3, $4, NULL)`,
           [PROJECT_NAME, SUB_TOPIC, sequence, textChunk]
         );
-        console.log(`✅ Inserted sequence #${sequence}`);
+        console.log(`Inserted sequence #${sequence}`);
         sequence++;
       }
     }
   }
 
   await db.end();
-  console.log("🌟 Done processing all chunks.");
+  console.log("Done processing all chunks.");
 }
 
 main().catch((err) => {
-  console.error("💥 Error in main:", err);
+  console.error("Error in main:", err);
   db.end();
 });

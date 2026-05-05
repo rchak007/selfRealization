@@ -3,7 +3,20 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "docker:up": "docker compose up -d",
+    "docker:down": "docker compose down",
+    "docker:logs": "docker compose logs -f",
+    "ollama:pull": "docker exec $(docker ps -q -f name=ollama) ollama pull llama3.2",
+    "ollama:list": "docker exec $(docker ps -q -f name=ollama) ollama list",
+    "setup": "npx tsx setupWeaviateSchema.ts",
+    "parse": "npx tsx parseAndChunkWeaviate.ts",
+    "parse:cleanup": "npx tsx parseAndChunkWeaviate.ts --cleanup",
+    "parse:cleanup-only": "npx tsx parseAndChunkWeaviate.ts --cleanup-only",
+    "tweet": "npx tsx tweetBot.ts",
+    "ui": "npx tsx webUI.ts",
+    "viewer": "npx tsx dataViewer.ts",
+    "check-duplicates": "npx tsx checkDuplicates.ts",
+    "start": "npm run docker:up && npm run setup"
   },
   "keywords": [],
   "author": "",
@@ -11,11 +24,16 @@
   "description": "",
   "dependencies": {
     "dotenv": "^16.5.0",
+    "node-cron": "^4.2.1",
     "openai": "^4.94.0",
-    "pg": "^8.14.1"
+    "pg": "^8.14.1",
+    "twitter-api-v2": "^1.29.0",
+    "weaviate-ts-client": "^2.2.0"
   },
   "devDependencies": {
+    "@types/node-cron": "^3.0.11",
     "@types/pg": "^8.11.13",
-    "prisma": "^6.6.0"
+    "prisma": "^6.6.0",
+    "tsx": "^4.21.0"
   }
 }
