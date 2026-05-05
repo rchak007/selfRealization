@@ -2,6 +2,11 @@
 
 A content creation bot that generates tweets inspired by spiritual book texts using Weaviate (vector database) and Llama (via Ollama).
 
+## Prerequisites
+
+- Docker Desktop installed and running
+- Node.js 18+ installed
+
 ## Architecture
 
 - **Weaviate**: Vector database for storing and semantically searching text chunks
@@ -34,7 +39,13 @@ This automated script will:
 3. Wait for services to be ready
 4. Pull Llama 3.2 model (~2GB, first time only)
 5. Set up Weaviate schema
-6. Parse and load book content from `./text_parts/`
+6. Parse and load book content from `./text_parts/` (skips if already ingested)
+7. **Start the Web UI** at http://localhost:3000
+
+To force re-ingestion of data:
+```bash
+./start.sh --force
+```
 
 ### Manual Setup
 
@@ -219,12 +230,15 @@ curl http://localhost:11434/api/tags
 - Run `npx tsx setupWeaviateSchema.ts` to create schema
 - Run `npx tsx parseAndChunkWeaviate.ts` to load data
 
-## Cost
+## Future Enhancements
 
-Completely free! Everything runs locally:
-- Ollama (Llama): Free and open source
-- Weaviate: Free self-hosted version
-- Embeddings: Free local transformers model
+Potential features for future development:
+- Batch generation (10-20 tweets at once)
+- Tweet scheduling with auto-post to Twitter/X
+- Analytics to track which chunks generate best tweets
+- Multiple books/collections support
+- Export tweets to CSV/JSON
+- REST API for integrations
 
 ## License
 
